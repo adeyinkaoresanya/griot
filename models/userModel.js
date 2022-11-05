@@ -18,6 +18,11 @@ const userSchema = new Schema({
     required: true
   },
 
+  author_name: {
+    type: String
+    
+  },
+
   username: {
     type: String,
     required: true
@@ -32,9 +37,10 @@ const userSchema = new Schema({
 
   password: {
     type: String,
-    required: true,
-    minimum: 8
-    }
+    required: true
+    },
+
+  blogs: [{type: Schema.Types.ObjectId, ref: "Blog"}]
 });
 
 
@@ -43,9 +49,9 @@ userSchema.statics.signup = async function(first_name, last_name, username, emai
   if (!first_name || !last_name || !username || !email || !password) {
     throw Error('All fields must be completed!')
   }
-  if (!validator.isEmail(email)) {
-    throw Error('Email is not valid')
-  }
+  // if (!validator.isEmail(email)) {
+  //   throw Error('Email is not valid')
+  // }
   // if (!validator.isStrongPassword(password)) {
   //   throw Error('Password is not strong enough. Use a combination of uppercase, lowercase and special characters')
   // }
@@ -58,8 +64,10 @@ userSchema.statics.signup = async function(first_name, last_name, username, emai
 
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
+  
+  const author_name = first_name.concat(" ", last_name);
 
-  const user = await this.create({ first_name, last_name, username, email, password: hashedPassword })
+  const user = await this.create({ first_name, last_name, author_name, username, email, password: hashedPassword })
 
   return user
 }
