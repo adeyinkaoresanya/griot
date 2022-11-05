@@ -1,35 +1,30 @@
-const router = require("express").Router();
-const blogModel = require("../models/blogModel");
+// const router = require("express").Router();
+// const blogModel = require("../models/blogModel");
 
-router
-  .get("/write", (req, res) => {
-    res.render("createBlog");
-  })
-
+// router.get("/write", (req, res) => {
+//     res.render("createBlog");
+//   })
 
 
-  // .post("/write", (req, res) => {
-  //   const { title, description, content } = req.body;
 
-  //   if (!title || !description || !content)
-  //     return res.send("You have not finished writing. Some details are missing!");
+// router.post("/write", (req, res) => {
+//     const { title, description, content } = req.body;
 
-  //   const newBlog = new blogModel({ title, description, content });
+//     if (!title || !description || !content)
+//       return res.send("You have not finished writing. Some details are missing!");
 
-  //   newBlog
-  //     .save()
-  //     .then(() => {
-  //       console.log("Blog Saved Successfully!");
-  //       res.redirect("/");
-  //     })
-  //     .catch((err) => console.log(err));
-  // });
+//     const newBlog = new blogModel({ title, description, content });
 
+//     newBlog
+//       .save()
+//       .then(() => {
+//         console.log("Blog Saved Successfully!");
+//         res.redirect("/");
+//       })
+//       .catch((err) => console.log(err));
+//   });
 
 
 
 
-
-
-
-  module.exports= router;
+//   module.exports= router;

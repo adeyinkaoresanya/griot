@@ -7,11 +7,6 @@ const router = express.Router()
 
 
 
-//home route
-router.get("/", (req, res) => {
-    res.render("index");
-  })
-
 // login route
 router.get("/login", (req, res) => {
     res.render("login");

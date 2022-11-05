@@ -1,3 +1,4 @@
+const mongoose= require("mongoose")
 const User = require('../models/userModel')
 const jwt = require('jsonwebtoken')
 
@@ -14,12 +15,14 @@ const loginUser = async (req, res) => {
     const user = await User.login(username, password)
 
     // create a token
+    
     const token = createToken(user._id)
 
     res.cookie("token", token, {
         httpOnly: true
     })
-        res.redirect("/")
+    //  res.json({authorId})
+        res.redirect("/user")
     // res.status(200).json({email, token})
   } catch (error) {
     res.status(400).json({error: error.message})
