@@ -1,8 +1,12 @@
 const router = require("express").Router();
-const blog = require("../models/blogModel");
+// const blog = require("../models/blogModel");
+const { pagination } = require("../controllers/blogController")
 
-router.get("/", async (req, res) => {
-  const allBlogs = await blog.find().populate('author').exec();
-  res.render("index", { blogs: allBlogs });
-});
-  module.exports = router;
+
+router.get("/", pagination)
+
+
+
+
+
+module.exports = router;
