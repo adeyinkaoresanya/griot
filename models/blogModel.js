@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const {readingTime } = require("../utils/readingTime")
+
 const BlogSchema = new mongoose.Schema({
   title: {
     type: String
@@ -42,6 +44,20 @@ const BlogSchema = new mongoose.Schema({
     default: new Date().toString(),
   },
 });
+
+
+BlogSchema.pre('save', function (next) {
+  let blog = this
+
+  // do nothing if the article body is unchanged
+  if (!blog.isModified('content')) return next()
+
+  // calculate the time in minutes
+  const timeTaken = readingTime(this.content)
+
+  blog.reading_time = timeTaken
+  next()
+})
 
 module.exports = new mongoose.model("Blog", BlogSchema, "Blogs");
 

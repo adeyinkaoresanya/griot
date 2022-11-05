@@ -14,7 +14,7 @@ const pagination = async (req, res) => {
     const page= req.query.page || 0;
 
     const allBlogs = await blog.find()
-                                .sort({postedAt: -1})
+                                .sort({reading_time: -1, postedAt: -1})
                                 .skip(page * blogsPerPage)
                                 .limit(blogsPerPage)
                                 .populate('author').exec();

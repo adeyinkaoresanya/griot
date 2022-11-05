@@ -10,24 +10,33 @@ jwt_decode = require("jwt-decode");
         
 
 router.get("/user", async (req, res) => {
-  
-  const token = req.cookies.token;
-  
+  try
+  { const token = req.cookies.token;
   
   let base64Url = token.split('.')[1];
   
   splitToken = new Buffer.from(base64Url, 'base64').toString('ascii');
-  var obj= JSON.parse(splitToken)
+  const obj= JSON.parse(splitToken)
   const authorId = mongoose.Types.ObjectId(obj._id);
+  const blogsPerPage= 2
 
-  // console.log(obj)
-  // console.log(authorId)
+  const totalRecords = await blog.find().count();
 
-  const blogs = await blog.find({"author": authorId});
-//  res.json({ authorBlogs: blogs });
-  res.render("ownerBlogs", { authorBlogs: blogs })
-});
+  const totalPages = Math.ceil(totalRecords / blogsPerPage);
+    
+  const page= req.query.page || 0;
 
+  const blogs = await blog.find({"author": authorId})
+                                .sort({postedAt: -1, reading_time: -1})
+                                .skip(page * blogsPerPage)
+                                .limit(blogsPerPage);
+
+    res.render("ownerBlogs", { authorBlogs: blogs, pages: totalPages});
+    } catch (error) {
+    res.status(400).json({error: error.message})
+  }
+}
+);
 
   module.exports = router;
 
