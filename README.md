@@ -8,7 +8,7 @@ This is an api for a blog app built as an exam project from <a href="https://alt
 
 2. A user should be able to sign up and sign in into the blog app.
 
-3. Use JWT as authentication strategy and expire the token after 1 hour.
+3. Use JWT as an authentication strategy and expire the token after 1 hour.
 
 4. A blog can be in two states; draft and published.
 
