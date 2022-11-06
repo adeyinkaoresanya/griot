@@ -33,6 +33,7 @@ router.post("/write", (req, res) => {
       .save()
       .then(() => {
         console.log("Blog Saved Successfully!");
+        res.status(200).json({newBlog})
         res.redirect("/user");
       })
       .catch((err) => console.log(err));

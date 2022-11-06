@@ -27,13 +27,13 @@ router
     res.render("editBlog", { blog: getData });
   })
 
-  .post("/edit/:id", (req, res) => {
+  
+  .put("/edit/:id", (req, res) => {
     const { id } = req.params;
     const { title, description, content } = req.body;
 
-    Blog.updateOne({ _id: id }, { title, description, content })
+    updatedBlog= Blog.updateOne({ _id: id }, { title, description, content })
       .then(() => {
-        console.log("Blog has been successfully updated!");
         res.redirect("/user");
       })
       .catch((err) => console.log(err));

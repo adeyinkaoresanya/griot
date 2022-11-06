@@ -18,9 +18,12 @@ const pagination = async (req, res) => {
                                 .skip(page * blogsPerPage)
                                 .limit(blogsPerPage)
                                 .populate('author').exec();
+    
+    res.status(200).json({allBlogs})
 
     res.render("index", { blogs: allBlogs, pages: totalPages});
-    } catch (error) {
+    } 
+    catch (error) {
     res.status(400).json({error: error.message})
     // res.redirect("/login")
   }

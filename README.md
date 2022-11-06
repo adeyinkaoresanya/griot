@@ -119,26 +119,22 @@ npm run start:dev
 
 ```json
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "username": "johndoe",
-  "email": "johndoe@mail.com",
-  "password": "johndoe126"
+"first_name": "Jane",
+"last_name": "Bakes",
+"username": "janebakes",
+"email": "janebakes@gmail.com",
+"password": "janebakes236"
+
 }
 ```
 
 Response
 
 ```json
-{
-  "status": "success",
-  "data": {
-    "firstName": "John",
-  "lastName": "Doe",
-  "username": "johndoe",
-  "email": "johndoe@mail.com",
-    "_id": ""
-  }
+{"first_name":"Jane",
+"last_name":"Bakes",
+"username":"janebakes",
+"email":"janebakes@gmail.com"}
 
 ```
 
@@ -152,15 +148,17 @@ Body
 
 ```json
 {
-  "username": "johndoe",
-  "password": "johndoe126"
+"username": "janebakes",
+"password": "janebakes236"
 }
+
 ```
 
 Response
 
 ```json
 {
+  "username": "janebakes",
   "token": { token }
 }
 ```
@@ -176,9 +174,9 @@ Body
 
 ```json
 {
-  "title": "The Silent Echoes",
-  "description": "doloremque aspernatu",
-  "body": "Lorem ipsum dolor sit amet. Ut laborum debitis et blanditiis aperiam non error nulla est vitae..."
+"title": "The Paper Girl",
+"description": "Coming of age story",
+"content": "Lorem ipsum dolor sit amet. Aut ipsum doloremque eum consequatur illum in sint totam qui porro minima eos corrupti dolorum nam velit atque quo quibusdam quidem. Et dicta dicta ut consequatur corrupti est consequatur quia est enim ratione aut fugit nemo. Aut dolor Quis id nihil voluptatibus ut illo dolores sit expedita aspernatur rem consectetur cumque est odio officia sed rerum enim. Nam quas porro qui placeat architecto non natus labore vel eaque dicta quo consequatur ipsum "
 }
 
 ```
@@ -187,20 +185,19 @@ Response
 
 ```json
 {
-
-  "data": {
-
-"_id": "6367b7a9bd878192d63e6f27",
-"title":"The Silent Echoes",
-"description":"doloremque aspernatu",
-"content":"<p>Lorem ipsum dolor sit amet. Ut laborum debitis et blanditiis aperiam non error nulla est vitae voluptatem ut fugiat quae! Ut illo soluta et reprehenderit voluptate sit esse ducimus ab error quas est doloremque aspernatur. Et perspiciatis velit ab earum quaerat vel tempore nih",
-"author":{"_id":"6365f9b9787b41472cc6d738"},
-"state":"draft",
-"read_count": 0,
-"tags":[],
-"postedAt":"Sun Nov 06 2022 14:14:39 GMT+0100 (West Africa Standard Time)",
-"reading_time": 1
-  }
+    "newBlog": {
+        "title": "The Paper Girl",
+        "description": "Coming of age story",
+        "content": "Lorem ipsum dolor sit amet. Aut ipsum doloremque eum consequatur illum in sint totam qui porro minima eos corrupti dolorum nam velit atque quo quibusdam quidem. Et dicta dicta ut consequatur corrupti est consequatur quia est enim ratione aut fugit nemo. Aut dolor Quis id nihil voluptatibus ut illo dolores sit expedita aspernatur rem consectetur cumque est odio officia sed rerum enim. Nam quas porro qui placeat architecto non natus labore vel eaque dicta quo consequatur ipsum ",
+        "author": "636823d1655ac68d6e234c04",
+        "state": "draft",
+        "read_count": 0,
+        "tags": [],
+        "postedAt": "Sun Nov 06 2022 22:29:15 GMT+0100 (West Africa Standard Time)",
+        "_id": "6368273dc2d2c0ad8b2f757c",
+        "reading_time": 1,
+        "__v": 0
+    }
 }
 ```
 
@@ -208,35 +205,11 @@ Response
 
 ---
 
-### Update the state of a Blog
-
-- Route: blog/:id
-- Method: PUT
-- Header
-  - Authorization: {token}
-
-: Body
-
-```json
-{
-  
-}
-```
-
-:point_down: Response
-
-```json
-{
-  
-  }
-}
-```
-
 
 
 ### Update the contents of a Blog
 
-- Route: blog/:id
+- Route: /edit:id
 - Method: PUT
 - Header
 - Authorization: Bearer {token}
@@ -245,8 +218,11 @@ Body
 
 ```json
 {
-  
+"title": "Gone girl",
+"description": "Same story",
+"content": "Lorem ipsum dolor sit amet. Aut ipsum doloremque eum consequatur illum in sint totam qui porro minima eos corrupti dolorum nam velit atque quo quibusdam quidem. Et dicta dicta ut consequatur corrupti est consequatur quia est enim ratione aut fugit nemo. Aut dolor Quis id nihil voluptatibus ut illo dolores sit laceat architecto non natus labore vel eaque dicta quo consequatur ipsum "
 }
+  
 ```
 
 Response

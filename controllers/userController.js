@@ -22,8 +22,8 @@ const loginUser = async (req, res) => {
         httpOnly: true
     })
 
-        res.redirect("/user")
     res.status(200).json({username, token})
+    res.redirect("/user")
   } catch (error) {
     res.status(400).json({error: error.message})
     // res.redirect("/login")

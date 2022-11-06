@@ -39,8 +39,7 @@ const BlogSchema = new mongoose.Schema({
   },
 
   reading_time: {
-  type: Number,
-  required: true
+  type: Number
 },
 
   tags: [String],
