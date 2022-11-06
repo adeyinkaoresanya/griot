@@ -1,29 +1,46 @@
-const blog = require('../models/blogModel')
+const router = require("express").Router();
+const Blog = require("../models/blogModel");
 
+router
+  .get("/blog/:id", async (req, res) => {
+    const { id } = req.params;
+    const getABlog = await Blog.findOne({ _id: id }).populate('author').exec();
     
-const pagination = async (req, res) => {
+    res.render("specificBlog", { blog: getABlog });
+  })
 
-  try {
 
-    const blogsPerPage= 2
+  .get("/delete/:id", (req, res) => {
+    const { id } = req.params;
+    Blog.deleteOne({ _id: id })
+      .then(() => {
+        console.log("Blog has been deleted!");
+        res.redirect("/user");
+      })
+      .catch((err) => console.log(err));
+  })
 
-    const totalRecords = await blog.find().count();
+  .get("/edit/:id", async (req, res) => {
+    const { id } = req.params;
 
-    const totalPages = Math.ceil(totalRecords / blogsPerPage);
-    
-    const page= req.query.page || 0;
+    const getData = await Blog.findOne({ _id: id });
+    res.render("editBlog", { blog: getData });
+  })
 
-    const allBlogs = await blog.find()
-                                .sort({reading_time: -1, postedAt: -1})
-                                .skip(page * blogsPerPage)
-                                .limit(blogsPerPage)
-                                .populate('author').exec();
+  .post("/edit/:id", (req, res) => {
+    const { id } = req.params;
+    const { title, description, content } = req.body;
 
-    res.render("index", { blogs: allBlogs, pages: totalPages});
-    } catch (error) {
-    res.status(400).json({error: error.message})
-    // res.redirect("/login")
-  }
-}
+    Blog.updateOne({ _id: id }, { title, description, content })
+      .then(() => {
+        console.log("Blog has been successfully updated!");
+        res.redirect("/user");
+      })
+      .catch((err) => console.log(err));
+  });
 
-module.exports = { pagination }
+  
+
+
+
+  module.exports = router;

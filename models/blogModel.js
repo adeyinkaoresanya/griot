@@ -4,16 +4,19 @@ const {readingTime } = require("../utils/readingTime")
 
 const BlogSchema = new mongoose.Schema({
   title: {
-    type: String
+    type: String,
+    required: true
   },
 
   description: {
     type: String,
+    required: true
 
   },
 
   content: {
     type: String,
+    required: true
     
   },
 
@@ -27,6 +30,7 @@ const BlogSchema = new mongoose.Schema({
     type: String,
     default: 'draft',
     enum: ['draft', 'published'],
+    required: true
   },
 
   read_count: {
@@ -34,7 +38,10 @@ const BlogSchema = new mongoose.Schema({
     default: 0,
   },
 
-  reading_time: Number,
+  reading_time: {
+  type: Number,
+  required: true
+},
 
   tags: [String],
 
@@ -49,10 +56,8 @@ const BlogSchema = new mongoose.Schema({
 BlogSchema.pre('save', function (next) {
   let blog = this
 
-  // do nothing if the article body is unchanged
   if (!blog.isModified('content')) return next()
 
-  // calculate the time in minutes
   const timeTaken = readingTime(this.content)
 
   blog.reading_time = timeTaken

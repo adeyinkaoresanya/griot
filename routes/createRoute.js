@@ -12,14 +12,22 @@ router.get("/write", (req, res) => {
 
 
 router.post("/write", (req, res) => {
-    const { title, description, content } = req.body;
-
+    const { title, description, content, submit } = req.body;
+    
     const author = req.user._id;
+    let state;
 
     if (!title || !description || !content)
       return res.send("You have not finished writing. Some details are missing!");
 
-    const newBlog = new blogModel({ title, description, content, author });
+    if (submit === "Publish"){
+      state= "published"
+      }
+        console.log(state)
+    
+    
+      
+    const newBlog = new blogModel({ title, description, content, author, state });
 
     newBlog
       .save()
@@ -33,3 +41,6 @@ router.post("/write", (req, res) => {
 
 
   module.exports= router
+
+  
+      

@@ -21,9 +21,9 @@ const loginUser = async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true
     })
-    //  res.json({authorId})
+
         res.redirect("/user")
-    // res.status(200).json({email, token})
+    res.status(200).json({username, token})
   } catch (error) {
     res.status(400).json({error: error.message})
     // res.redirect("/login")
@@ -36,17 +36,9 @@ const signupUser = async (req, res) => {
 
   try {
     const user = await User.signup(first_name, last_name, username, email, password)
-    // res.cookie("token", token, {
-    //     httpOnly: true,
-    //     secure: true,
-    //     singed: true
-    // })
+      res.status(200).json({first_name, last_name, username, email})
         res.redirect("/login")
 
-    // // create a token
-    // const token = createToken(user._id)
-
-    // res.status(200).json({email, token})
   } catch (error) {
     res.status(400).json({error: error.message})
     // res.redirect("/register")

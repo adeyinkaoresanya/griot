@@ -18,7 +18,7 @@ router.get("/user", async (req, res) => {
   splitToken = new Buffer.from(base64Url, 'base64').toString('ascii');
   const obj= JSON.parse(splitToken)
   const authorId = mongoose.Types.ObjectId(obj._id);
-  const blogsPerPage= 2
+  const blogsPerPage= 20
 
   const totalRecords = await blog.find().count();
 

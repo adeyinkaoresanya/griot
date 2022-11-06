@@ -8,8 +8,9 @@ require("dotenv").config()
 
 
 const {authUser}= require("./middleware/auth")
-const userRoute= require("./routes/user")
-const blogRoute= require("./routes/homeRouter")
+const userRoute= require("./routes/userRoute")
+const homeRoute= require("./routes/homeRoute")
+const blogRoute= require("./controllers/blogController")
 const createRoute= require("./routes/createRoute")
 const authorRoute= require("./routes/authorRouter")
 
@@ -36,7 +37,8 @@ app.use(express.static("public"))
 
 
 
-app.use('/', blogRoute);
+app.use('/', homeRoute);
+app.use(blogRoute);
 app.use(authorRoute);
 app.use(userRoute);
 app.use(authUser, createRoute);
