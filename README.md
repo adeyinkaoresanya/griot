@@ -1,6 +1,6 @@
 ## Griot
 
-&mdash; This is an api for a blog app built as an exam project from <a href="https://altschoolafrica.com/schools/engineering">AltSchool Africa</a>.
+This is an api for a blog app built as an exam project from <a href="https://altschoolafrica.com/schools/engineering">AltSchool Africa</a>.
 
 ## Requirements
 
@@ -81,7 +81,7 @@ npm run start:dev
 ### Models
 ---
 
-### User
+#### User
 | field        | data_type | constraints   |
 |--------------|------------|-------------------|
 |  id          | string     |  required         |
@@ -229,14 +229,26 @@ Response
 
 ```json
 {
-  
-  }
+  {
+    "updatedBlog": {
+        "title": "Gone Girl",
+        "description": "Same story",
+"content": "Lorem ipsum dolor sit amet. Aut ipsum doloremque eum consequatur illum in sint totam qui porro minima eos corrupti dolorum nam velit atque quo quibusdam quidem. Et dicta dicta ut consequatur corrupti est consequatur quia est enim ratione aut fugit nemo. Aut dolor Quis id nihil voluptatibus ut illo dolores sit laceat architecto non natus labore vel eaque dicta quo consequatur ipsum "
+        "author": "636823d1655ac68d6e234c04",
+        "state": "draft",
+        "read_count": 0,
+        "tags": [],
+        "postedAt": "Sun Nov 06 2022 22:29:15 GMT+0100 (West Africa Standard Time)",
+        "_id": "6368273dc2d2c0ad8b2f757c",
+        "reading_time": 1,
+        "__v": 0
+    }
 }
+  }
 ```
 
 ---
 
-...
 
 ## Contributor
 - Adeyinka Oresanya
