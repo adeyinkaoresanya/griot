@@ -22,7 +22,7 @@ const loginUser = async (req, res) => {
         httpOnly: true
     })
 
-    res.status(200).json({username, token})
+    // res.status(200).json({username, token})
     res.redirect("/user")
   } catch (error) {
     res.status(400).json({error: error.message})
@@ -36,7 +36,7 @@ const signupUser = async (req, res) => {
 
   try {
     const user = await User.signup(first_name, last_name, username, email, password)
-      res.status(200).json({first_name, last_name, username, email})
+      // res.status(200).json({first_name, last_name, username, email})
         res.redirect("/login")
 
   } catch (error) {
