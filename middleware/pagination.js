@@ -19,7 +19,7 @@ const pagination = async (req, res) => {
                                 .limit(blogsPerPage)
                                 .populate('author').exec();
     
-    res.status(200).json({allBlogs})
+    // res.status(200).json({allBlogs})
 
     res.render("index", { blogs: allBlogs, pages: totalPages});
     } 
